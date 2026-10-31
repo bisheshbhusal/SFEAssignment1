@@ -194,7 +194,7 @@ async function afterStep(req, res, attempt, level, result) {
 }
 
 function completeLevel(req, res, attempt, level) {
-  const stars = engine.starsFor(attempt);
+  const stars = engine.starsFor(attempt, level);
   const profile = profileFor(req);
   const result = progress.recordClear(profile, config, level, stars, attempt.activeMs);
   store.saveProfiles();

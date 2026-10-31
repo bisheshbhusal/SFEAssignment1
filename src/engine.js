@@ -82,10 +82,15 @@ function applyGuess(attempt, level, guess, now) {
   return { outcome: 'wrong', passed: false, failed: failed, needsNewPuzzle: swap };
 }
 
-// 3 stars for no mistakes, 2 for one mistake, 1 otherwise
-function starsFor(attempt) {
-  if (attempt.livesLost === 0) return 3;
-  if (attempt.livesLost === 1) return 2;
+// 3 stars: no mistakes AND fast (average under 75% of the time limit)
+// 2 stars: no mistakes but slow, or exactly one mistake
+// 1 star: anything else
+function starsFor(attempt, level) {
+  const averageMs = attempt.activeMs / attempt.solved;
+  const fastEnough = averageMs <= level.secondsPerPuzzle * 1000 * 0.75;
+
+  if (attempt.livesLost === 0 && fastEnough) return 3;
+  if (attempt.livesLost <= 1) return 2;
   return 1;
 }
 

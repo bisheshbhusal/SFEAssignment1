@@ -21,7 +21,7 @@ test('correct guess advances; last puzzle passes the level', () => {
     assert.strictEqual(r.passed, i === level.puzzles);
     if (!r.passed) engine.setPuzzle(a, 5, 'img', T0);
   }
-  assert.strictEqual(engine.starsFor(a), 3);
+  assert.strictEqual(engine.starsFor(a, level), 3);
 });
 
 test('wrong guess costs a life; same puzzle stays on easy levels', () => {
@@ -62,9 +62,11 @@ test('losing all lives fails the level', () => {
 });
 
 test('stars: 0 mistakes=3, 1=2, more=1', () => {
-  assert.strictEqual(engine.starsFor({ livesLost: 0 }), 3);
-  assert.strictEqual(engine.starsFor({ livesLost: 1 }), 2);
-  assert.strictEqual(engine.starsFor({ livesLost: 4 }), 1);
+  const level = getLevel(1);
+  const quick = { solved: 3, activeMs: 3000 };
+  assert.strictEqual(engine.starsFor({ livesLost: 0, ...quick }, level), 3);
+  assert.strictEqual(engine.starsFor({ livesLost: 1, ...quick }, level), 2);
+  assert.strictEqual(engine.starsFor({ livesLost: 4, ...quick }, level), 1);
 });
 
 test('levels unlock one at a time', () => {
