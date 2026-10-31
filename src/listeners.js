@@ -29,6 +29,10 @@ function registerListeners() {
     addNews(e.username + ' cleared ' + e.name + ' ' + '★'.repeat(e.stars));
   });
 
+  bus.on(EVENTS.LEVEL_FAILED, (e) => {
+    addNews(e.username + ' was beaten by level ' + e.level);
+  });
+  
   bus.on(EVENTS.TROPHY_FOUND, (e) => {
     addNews(e.username + ' found the ' + e.trophy.name + ' ' + e.trophy.emoji);
   });
