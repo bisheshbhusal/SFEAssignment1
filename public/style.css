@@ -1,0 +1,65 @@
+:root { --bg:#fffbea; --card:#fff; --ink:#2b2b2b; --accent:#f2b705; --muted:#7a7a7a; --bad:#c0392b; --good:#1e8e3e;
+        --forest:#d9f2d0; --mountains:#dde6f0; --volcano:#f7d9cf; }
+* { box-sizing: border-box; }
+body { margin:0; font-family: system-ui, sans-serif; background:var(--bg); color:var(--ink); }
+main { max-width: 760px; margin: 0 auto; padding: 1rem; }
+header h1 { margin:.2rem 0; } .tagline { margin:0 0 1rem; color:var(--muted); }
+.card { background:var(--card); border-radius:12px; padding:1rem; margin-bottom:1rem; box-shadow:0 1px 4px rgba(0,0,0,.1); }
+h2 { font-size:1.1rem; margin:.5rem 0; }
+label { display:block; margin-bottom:.75rem; }
+input { width:100%; padding:.5rem; font-size:1rem; margin-top:.25rem; }
+button { padding:.6rem 1rem; font-size:1rem; border:0; border-radius:8px; background:var(--accent); color:var(--ink); cursor:pointer; }
+button.secondary { background:#e5e5e5; }
+button:disabled { opacity:.5; cursor:not-allowed; }
+.row { display:flex; gap:.5rem; align-items:center; } .between { justify-content:space-between; }
+.topbar { margin-bottom:.5rem; }
+
+#tabs { display:flex; gap:.4rem; margin-bottom:.75rem; }
+.tab { background:#e5e5e5; } .tab.active, .sort.active { background:var(--accent); }
+
+/* map */
+#path-wrap { overflow-x:auto; padding:.5rem 0 1rem; }
+#path { position:relative; display:flex; gap:24px; padding:44px 16px 8px; height:190px; width:max-content; }
+.region-bar { position:absolute; top:74px; height:84px; border-radius:42px; z-index:0; }
+.region-label { position:absolute; top:6px; font-size:.8rem; font-weight:600; z-index:1; }
+.node { position:relative; z-index:2; width:64px; height:64px; border-radius:50%; border:3px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,.35);
+        font-size:1.3rem; font-weight:700; padding:0; background:#fff; margin-top:40px; flex:none; }
+.node.locked { background:#cfcfcf; color:#777; cursor:not-allowed; }
+.node.cleared { background:#bfe8b0; } .node.current { background:var(--accent); }
+.node.selected { outline:3px solid var(--ink); outline-offset:2px; }
+.node .stars { position:absolute; left:0; right:0; bottom:-22px; font-size:.8rem; color:#c58f00; }
+.node.treasure { background:#fff3b0; font-size:1.8rem; }
+#explorer { position:absolute; top:34px; width:64px; text-align:center; font-size:2rem; z-index:3; transition:left .9s ease-in-out; pointer-events:none; }
+#level-card { border-top:1px solid #eee; padding-top:.75rem; }
+#level-card ul { margin:.25rem 0 .75rem; padding-left:1.1rem; }
+
+/* play */
+.hud { display:flex; justify-content:space-between; margin:.75rem 0 .4rem; font-size:1.2rem; }
+#timer-bar { height:10px; background:#eee; border-radius:5px; overflow:hidden; margin-bottom:1rem; }
+#timer-fill { height:100%; width:100%; background:var(--good); }
+#timer-fill.low { background:var(--bad); }
+#puzzle { display:block; max-width:100%; margin:0 auto 1rem; border-radius:8px; }
+#keypad { display:grid; grid-template-columns: repeat(5, 1fr); gap:.5rem; }
+#keypad button { padding:.9rem 0; font-size:1.3rem; }
+
+/* trophies / stats */
+.stats { display:grid; grid-template-columns: repeat(3, 1fr); gap:.5rem; margin-bottom:.5rem; }
+.stat { background:#fff8d6; border-radius:10px; padding:.6rem; text-align:center; }
+.stat b { display:block; font-size:1.4rem; }
+#trophy-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap:.5rem; }
+.trophy { border-radius:10px; padding:.75rem; text-align:center; background:#fff3b0; }
+.trophy.locked { background:#eee; color:var(--muted); }
+.trophy .big { font-size:2rem; display:block; }
+#leaderboard li.me { font-weight:700; background:#fff8d6; }
+#leaderboard li { padding:.35rem .5rem; border-radius:6px; }
+#leaderboard .meta { color:var(--muted); font-weight:400; }
+#feed { margin:0; padding-left:1.1rem; color:var(--muted); }
+
+#message { min-height:1.5em; font-weight:600; }
+#message.good { color:var(--good); } #message.bad { color:var(--bad); }
+
+dialog { border:0; border-radius:14px; padding:1.5rem; max-width:420px; text-align:center; box-shadow:0 8px 30px rgba(0,0,0,.35); }
+dialog::backdrop { background:rgba(0,0,0,.5); }
+.big-stars { font-size:2.2rem; color:#e0a800; letter-spacing:.2rem; }
+.treasure-big { font-size:3.5rem; }
+[hidden] { display:none !important; }

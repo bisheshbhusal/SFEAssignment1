@@ -1,0 +1,114 @@
+{
+  "regions": [
+    {
+      "id": "forest",
+      "name": "Whispering Forest",
+      "emoji": "🌲",
+      "chest": {
+        "id": "compass",
+        "name": "Ancient Compass",
+        "emoji": "🧭"
+      }
+    },
+    {
+      "id": "mountains",
+      "name": "Frozen Mountains",
+      "emoji": "🏔️",
+      "chest": {
+        "id": "pickaxe",
+        "name": "Golden Pickaxe",
+        "emoji": "⛏️"
+      }
+    },
+    {
+      "id": "volcano",
+      "name": "Ember Volcano",
+      "emoji": "🌋",
+      "chest": {
+        "id": "crown",
+        "name": "Banana Crown",
+        "emoji": "👑"
+      }
+    }
+  ],
+  "levels": [
+    {
+      "id": 1,
+      "region": "forest",
+      "name": "Muddy Trail",
+      "puzzles": 3,
+      "secondsPerPuzzle": 90,
+      "lives": 5
+    },
+    {
+      "id": 2,
+      "region": "forest",
+      "name": "Fallen Log",
+      "puzzles": 4,
+      "secondsPerPuzzle": 80,
+      "lives": 5
+    },
+    {
+      "id": 3,
+      "region": "forest",
+      "name": "Rope Bridge",
+      "puzzles": 4,
+      "secondsPerPuzzle": 70,
+      "lives": 4
+    },
+    {
+      "id": 4,
+      "region": "mountains",
+      "name": "Rockfall Pass",
+      "puzzles": 5,
+      "secondsPerPuzzle": 60,
+      "lives": 4,
+      "penaltySeconds": 3
+    },
+    {
+      "id": 5,
+      "region": "mountains",
+      "name": "Icy Ledge",
+      "puzzles": 5,
+      "secondsPerPuzzle": 55,
+      "lives": 4,
+      "penaltySeconds": 3
+    },
+    {
+      "id": 6,
+      "region": "mountains",
+      "name": "Summit Gale",
+      "puzzles": 6,
+      "secondsPerPuzzle": 50,
+      "lives": 3,
+      "penaltySeconds": 3
+    },
+    {
+      "id": 7,
+      "region": "volcano",
+      "name": "Lava Stepping Stones",
+      "puzzles": 6,
+      "secondsPerPuzzle": 45,
+      "lives": 3,
+      "newPuzzleOnWrong": true
+    },
+    {
+      "id": 8,
+      "region": "volcano",
+      "name": "Ash Storm",
+      "puzzles": 7,
+      "secondsPerPuzzle": 40,
+      "lives": 3,
+      "newPuzzleOnWrong": true
+    },
+    {
+      "id": 9,
+      "region": "volcano",
+      "name": "Dragon's Gate",
+      "puzzles": 8,
+      "secondsPerPuzzle": 35,
+      "lives": 3,
+      "newPuzzleOnWrong": true
+    }
+  ]
+}

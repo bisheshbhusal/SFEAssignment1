@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banana Quest</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>🍌 Banana Quest</h1>
+      <p class="tagline">Cross the forest, the mountains and the volcano to claim the Banana Crown.</p>
+    </header>
+
+    <!-- AUTH -->
+    <section id="auth-panel" class="card">
+      <form id="auth-form" autocomplete="on">
+        <label>Username <input id="username" name="username" autocomplete="username" required minlength="3" maxlength="20"></label>
+        <label>Password <input id="password" name="password" type="password" autocomplete="current-password" required minlength="8" maxlength="72"></label>
+        <div class="row">
+          <button type="submit" id="login-btn">Log in</button>
+          <button type="button" id="register-btn" class="secondary">Register</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- GAME -->
+    <div id="game-root" hidden>
+      <div class="row between topbar">
+        <span>Explorer: <strong id="player-name"></strong></span>
+        <button id="logout-btn" class="secondary">Log out</button>
+      </div>
+
+      <nav id="tabs" aria-label="Sections">
+        <button class="tab active" data-view="map">Map</button>
+        <button class="tab" data-view="trophies">Trophy room</button>
+        <button class="tab" data-view="board">Leaderboard</button>
+      </nav>
+
+      <!-- MAP -->
+      <section id="view-map" class="view card">
+        <div id="path-wrap"><div id="path"></div></div>
+        <div id="level-card"></div>
+      </section>
+
+      <!-- PLAY -->
+      <section id="view-play" class="view card" hidden>
+        <div class="row between">
+          <strong id="play-title"></strong>
+          <button id="retreat-btn" class="secondary">Retreat</button>
+        </div>
+        <div class="hud">
+          <span id="hearts" aria-label="Lives"></span>
+          <span id="dots" aria-label="Puzzles solved"></span>
+          <span id="timer-text">0.0s</span>
+        </div>
+        <div id="timer-bar"><div id="timer-fill"></div></div>
+        <img id="puzzle" alt="Banana puzzle: work out which digit the banana stands for" hidden>
+        <button id="retry-btn" class="secondary" hidden>Retry loading puzzle</button>
+        <div id="keypad" aria-label="Choose a digit"></div>
+      </section>
+
+      <!-- TROPHIES -->
+      <section id="view-trophies" class="view card" hidden>
+        <div id="stats" class="stats"></div>
+        <h2>Treasure chests</h2>
+        <div id="trophy-grid"></div>
+        <h2>Recent hunts</h2>
+        <ol id="history"></ol>
+      </section>
+
+      <!-- LEADERBOARD -->
+      <section id="view-board" class="view card" hidden>
+        <div class="row between">
+          <h2>Treasure hunters</h2>
+          <div class="row">
+            <button class="secondary sort active" data-sort="wins">Most wins</button>
+            <button class="secondary sort" data-sort="fastest">Fastest</button>
+          </div>
+        </div>
+        <ol id="leaderboard"></ol>
+      </section>
+    </div>
+
+    <p id="message" role="status" aria-live="polite"></p>
+
+    <section class="card">
+      <h2>Expedition news</h2>
+      <ul id="feed"></ul>
+    </section>
+  </main>
+
+  <dialog id="result-dialog"><div id="result-body"></div></dialog>
+  <script src="app.js"></script>
+</body>
+</html>
