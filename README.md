@@ -63,7 +63,6 @@ Then open http://localhost:3000, register an account and play.
 - npm packages: express, express-session, bcryptjs.
 - **Generative AI:** the first version of the code in this project was generated with Claude (Anthropic)
   in October 2026. I then ran it, tested it against the real Banana API, reviewed it and changed it.
-  The video was not made with generative AI.
 
 My own changes after the generated version:
 
