@@ -107,3 +107,19 @@ test('leaderboard: ignores non-winners; sorts by wins or by fastest', () => {
   assert.deepStrictEqual(progress.rankLeaderboard(ps, 'wins').map((r) => r.username), ['dan', 'amy', 'ben']);
   assert.deepStrictEqual(progress.rankLeaderboard(ps, 'fastest').map((r) => r.username), ['ben', 'dan', 'amy']);
 });
+
+test('flawless but slow run gets 2 stars, flawless and fast gets 3', () => {
+  const level = getLevel(1);
+  const limit = level.secondsPerPuzzle * 1000;
+  const slow = { livesLost: 0, solved: 3, activeMs: 3 * limit * 0.9 };
+  const fast = { livesLost: 0, solved: 3, activeMs: 3 * limit * 0.3 };
+  assert.strictEqual(engine.starsFor(slow, level), 2);
+  assert.strictEqual(engine.starsFor(fast, level), 3);
+});
+
+test('clearing level 1 does not unlock level 3', () => {
+  const p = progress.newProfile('x');
+  progress.recordClear(p, cfg, getLevel(1), 3, 1000);
+  assert.ok(progress.isUnlocked(p, 2));
+  assert.ok(!progress.isUnlocked(p, 3));
+});

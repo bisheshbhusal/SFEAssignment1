@@ -64,8 +64,8 @@ Then open http://localhost:3000, register an account and play.
 - **Generative AI:** the first version of the code in this project was written using AI (Anthropic)
   in October 2026. I then ran it, tested it against the real Banana API, reviewed it and changed it.
 
-My own changes:
+Later changes(self):
 
-- 
-- 
-- 
+- Added a new star rule that also rewards speed
+- A news message when a level is failed
+- Two extra unit tests.
