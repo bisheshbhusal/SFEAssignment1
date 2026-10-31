@@ -57,14 +57,14 @@ Then open http://localhost:3000, register an account and play.
 4. **Virtual identity:** accounts with bcrypt password hashing, session cookies, rate limited login and
    progress saved per account (`src/auth.js`, `src/app.js`).
 
-## Use of AI and references
+## References
 
 - Banana API: Marc Conrad, University of Bedfordshire, https://marcconrad.com/uob/banana/doc.php
 - npm packages: express, express-session, bcryptjs.
-- **Generative AI:** the first version of the code in this project was generated with Claude (Anthropic)
+- **Generative AI:** the first version of the code in this project was written using AI (Anthropic)
   in October 2026. I then ran it, tested it against the real Banana API, reviewed it and changed it.
 
-My own changes after the generated version:
+My own changes:
 
 - 
 - 
