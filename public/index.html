@@ -3,21 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#13110e">
   <title>Banana Quest</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="logged-out">
   <main>
     <header>
       <h1>🍌 Banana Quest</h1>
-      <p class="tagline">Cross the forest, the mountains and the volcano to claim the Banana Crown.</p>
+      <p class="tagline">Claim the Treasure.</p>
     </header>
 
-    <!-- AUTH -->
+    <!-- login / register -->
     <section id="auth-panel" class="card">
+      <h2>Log in or register to start</h2>
       <form id="auth-form" autocomplete="on">
-        <label>Username <input id="username" name="username" autocomplete="username" required minlength="3" maxlength="20"></label>
-        <label>Password <input id="password" name="password" type="password" autocomplete="current-password" required minlength="8" maxlength="72"></label>
+        <label>Username
+          <input id="username" name="username" autocomplete="username">
+        </label>
+        <label>Password
+          <input id="password" name="password" type="password" autocomplete="current-password">
+        </label>
         <div class="row">
           <button type="submit" id="login-btn">Log in</button>
           <button type="button" id="register-btn" class="secondary">Register</button>
@@ -25,7 +31,7 @@
       </form>
     </section>
 
-    <!-- GAME -->
+    <!-- the game (hidden until logged in) -->
     <div id="game-root" hidden>
       <div class="row between topbar">
         <span>Explorer: <strong id="player-name"></strong></span>
@@ -38,13 +44,13 @@
         <button class="tab" data-view="board">Leaderboard</button>
       </nav>
 
-      <!-- MAP -->
+      <!-- map -->
       <section id="view-map" class="view card">
         <div id="path-wrap"><div id="path"></div></div>
         <div id="level-card"></div>
       </section>
 
-      <!-- PLAY -->
+      <!-- playing a level -->
       <section id="view-play" class="view card" hidden>
         <div class="row between">
           <strong id="play-title"></strong>
@@ -61,7 +67,7 @@
         <div id="keypad" aria-label="Choose a digit"></div>
       </section>
 
-      <!-- TROPHIES -->
+      <!-- trophy room -->
       <section id="view-trophies" class="view card" hidden>
         <div id="stats" class="stats"></div>
         <h2>Treasure chests</h2>
@@ -70,13 +76,13 @@
         <ol id="history"></ol>
       </section>
 
-      <!-- LEADERBOARD -->
+      <!-- leaderboard -->
       <section id="view-board" class="view card" hidden>
         <div class="row between">
           <h2>Treasure hunters</h2>
           <div class="row">
-            <button class="secondary sort active" data-sort="wins">Most wins</button>
-            <button class="secondary sort" data-sort="fastest">Fastest</button>
+            <button class="sort active" data-sort="wins">Most wins</button>
+            <button class="sort" data-sort="fastest">Fastest</button>
           </div>
         </div>
         <ol id="leaderboard"></ol>
@@ -85,7 +91,8 @@
 
     <p id="message" role="status" aria-live="polite"></p>
 
-    <section class="card">
+    <!-- news (only shown after login) -->
+    <section id="news-card" class="card" hidden>
       <h2>Expedition news</h2>
       <ul id="feed"></ul>
     </section>

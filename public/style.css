@@ -1,65 +1,230 @@
-:root { --bg:#fffbea; --card:#fff; --ink:#2b2b2b; --accent:#f2b705; --muted:#7a7a7a; --bad:#c0392b; --good:#1e8e3e;
-        --forest:#d9f2d0; --mountains:#dde6f0; --volcano:#f7d9cf; }
-* { box-sizing: border-box; }
-body { margin:0; font-family: system-ui, sans-serif; background:var(--bg); color:var(--ink); }
-main { max-width: 760px; margin: 0 auto; padding: 1rem; }
-header h1 { margin:.2rem 0; } .tagline { margin:0 0 1rem; color:var(--muted); }
-.card { background:var(--card); border-radius:12px; padding:1rem; margin-bottom:1rem; box-shadow:0 1px 4px rgba(0,0,0,.1); }
-h2 { font-size:1.1rem; margin:.5rem 0; }
-label { display:block; margin-bottom:.75rem; }
-input { width:100%; padding:.5rem; font-size:1rem; margin-top:.25rem; }
-button { padding:.6rem 1rem; font-size:1rem; border:0; border-radius:8px; background:var(--accent); color:var(--ink); cursor:pointer; }
-button.secondary { background:#e5e5e5; }
-button:disabled { opacity:.5; cursor:not-allowed; }
-.row { display:flex; gap:.5rem; align-items:center; } .between { justify-content:space-between; }
-.topbar { margin-bottom:.5rem; }
+/* Banana Quest styles: warm dark theme with a banana yellow accent */
 
-#tabs { display:flex; gap:.4rem; margin-bottom:.75rem; }
-.tab { background:#e5e5e5; } .tab.active, .sort.active { background:var(--accent); }
+:root {
+  --bg: #13110e;
+  --card: #1b1814;
+  --tile: #27221a;
+  --line: #352f25;
+  --line-strong: #5a5143;
+  --text: #fff6e3;
+  --muted: #b3a88f;
+  --accent: #ffc83d;
+  --accent-dark: #b58a14;
+  --on-accent: #1a1405;
+  --good: #6ee7a0;
+  --bad: #ff7a6b;
+
+  /* region colours, app.js reads these by region id (var(--forest) etc.) */
+  --forest: #1f3a2a;
+  --mountains: #232f40;
+  --volcano: #442724;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  color: var(--text);
+  /* warm glow at the top that fades into the dark background */
+  background: var(--bg) linear-gradient(180deg, #3a2c0c 0, var(--bg) 360px) no-repeat;
+}
+
+main { max-width: 760px; margin: 0 auto; padding: 28px 16px 48px; }
+
+header h1 { margin: 0 0 4px; font-size: 2.2rem; letter-spacing: -0.02em; }
+.tagline { margin: 0 0 24px; color: var(--muted); }
+
+h2 { margin: 6px 0 12px; font-size: 1.15rem; }
+
+/* cards */
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; margin-bottom: 16px; }
+
+/* layout helpers */
+.row { display: flex; gap: 10px; align-items: center; }
+.between { justify-content: space-between; }
+.topbar { margin-bottom: 14px; color: var(--muted); }
+.topbar strong { color: var(--text); }
+
+/* form */
+label { display: block; margin-bottom: 14px; font-size: .85rem; font-weight: 700; }
+input {
+  width: 100%;
+  margin-top: 6px;
+  padding: 12px 14px;
+  font: inherit;
+  font-weight: 400;
+  color: var(--text);
+  background: var(--tile);
+  border: 2px solid var(--line);
+  border-radius: 10px;
+}
+input:focus { outline: none; border-color: var(--accent); }
+input::placeholder { color: #7d7360; }
+
+/* buttons: chunky yellow keys that press down when clicked */
+button {
+  font: inherit;
+  font-weight: 700;
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 24px;
+  background: var(--accent);
+  color: var(--on-accent);
+  box-shadow: 0 3px 0 var(--accent-dark);
+  cursor: pointer;
+  transition: transform .08s ease, box-shadow .08s ease, filter .12s ease;
+}
+button:hover:not(:disabled) { filter: brightness(1.08); }
+button:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 0 0 var(--accent-dark); }
+button:disabled { opacity: .4; cursor: not-allowed; }
+
+/* outlined buttons */
+button.secondary { background: transparent; color: var(--text); box-shadow: inset 0 0 0 2px var(--line-strong); }
+button.secondary:hover:not(:disabled) { box-shadow: inset 0 0 0 2px var(--text); filter: none; }
+button.secondary:active:not(:disabled) { transform: none; box-shadow: inset 0 0 0 2px var(--text); }
+
+/* tabs: plain text with a yellow underline on the active one */
+#tabs { display: flex; gap: 4px; margin-bottom: 16px; border-bottom: 1px solid var(--line); }
+.tab {
+  padding: 10px 16px;
+  font-size: .95rem;
+  background: transparent;
+  color: var(--muted);
+  box-shadow: none;
+  border-radius: 8px 8px 0 0;
+  border-bottom: 3px solid transparent;
+}
+.tab:hover:not(:disabled) { color: var(--text); filter: none; }
+.tab:active:not(:disabled) { transform: none; box-shadow: none; }
+.tab.active { color: var(--text); border-bottom-color: var(--accent); }
+
+/* small sort buttons on the leaderboard */
+.sort {
+  padding: 7px 14px;
+  font-size: .85rem;
+  background: transparent;
+  color: var(--muted);
+  box-shadow: inset 0 0 0 2px var(--line-strong);
+}
+.sort:active:not(:disabled) { transform: none; }
+.sort.active { background: var(--accent); color: var(--on-accent); box-shadow: 0 2px 0 var(--accent-dark); }
 
 /* map */
-#path-wrap { overflow-x:auto; padding:.5rem 0 1rem; }
-#path { position:relative; display:flex; gap:24px; padding:44px 16px 8px; height:190px; width:max-content; }
-.region-bar { position:absolute; top:74px; height:84px; border-radius:42px; z-index:0; }
-.region-label { position:absolute; top:6px; font-size:.8rem; font-weight:600; z-index:1; }
-.node { position:relative; z-index:2; width:64px; height:64px; border-radius:50%; border:3px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,.35);
-        font-size:1.3rem; font-weight:700; padding:0; background:#fff; margin-top:40px; flex:none; }
-.node.locked { background:#cfcfcf; color:#777; cursor:not-allowed; }
-.node.cleared { background:#bfe8b0; } .node.current { background:var(--accent); }
-.node.selected { outline:3px solid var(--ink); outline-offset:2px; }
-.node .stars { position:absolute; left:0; right:0; bottom:-22px; font-size:.8rem; color:#c58f00; }
-.node.treasure { background:#fff3b0; font-size:1.8rem; }
-#explorer { position:absolute; top:34px; width:64px; text-align:center; font-size:2rem; z-index:3; transition:left .9s ease-in-out; pointer-events:none; }
-#level-card { border-top:1px solid #eee; padding-top:.75rem; }
-#level-card ul { margin:.25rem 0 .75rem; padding-left:1.1rem; }
+#path-wrap { overflow-x: auto; padding: 6px 0 16px; scrollbar-color: #4a4235 transparent; }
+#path { position: relative; display: flex; gap: 24px; padding: 44px 16px 8px; height: 190px; width: max-content; }
+.region-bar { position: absolute; top: 74px; height: 84px; border-radius: 42px; z-index: 0; }
+.region-label { position: absolute; top: 6px; z-index: 1; font-size: .78rem; font-weight: 700; color: var(--muted); }
 
-/* play */
-.hud { display:flex; justify-content:space-between; margin:.75rem 0 .4rem; font-size:1.2rem; }
-#timer-bar { height:10px; background:#eee; border-radius:5px; overflow:hidden; margin-bottom:1rem; }
-#timer-fill { height:100%; width:100%; background:var(--good); }
-#timer-fill.low { background:var(--bad); }
-#puzzle { display:block; max-width:100%; margin:0 auto 1rem; border-radius:8px; }
-#keypad { display:grid; grid-template-columns: repeat(5, 1fr); gap:.5rem; }
-#keypad button { padding:.9rem 0; font-size:1.3rem; }
+.node {
+  position: relative;
+  z-index: 2;
+  flex: none;
+  width: 64px;
+  height: 64px;
+  margin-top: 40px;
+  padding: 0;
+  border-radius: 50%;
+  background: #3a3427;
+  color: var(--text);
+  font-size: 1.25rem;
+  box-shadow: none;
+}
+.node:active:not(:disabled) { transform: scale(.95); box-shadow: none; }
+.node.locked { background: #1f1c16; color: #6d6452; cursor: not-allowed; }
+.node.locked:hover { filter: none; }
+.node.cleared { background: var(--accent); color: var(--on-accent); }
+.node.current { background: var(--text); color: #1a1405; }
+.node.selected { box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--text); }
+.node .stars { position: absolute; left: 0; right: 0; bottom: -22px; font-size: .8rem; color: var(--accent); }
+.node.treasure { background: #3d3320; font-size: 1.8rem; cursor: default; }
 
-/* trophies / stats */
-.stats { display:grid; grid-template-columns: repeat(3, 1fr); gap:.5rem; margin-bottom:.5rem; }
-.stat { background:#fff8d6; border-radius:10px; padding:.6rem; text-align:center; }
-.stat b { display:block; font-size:1.4rem; }
-#trophy-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap:.5rem; }
-.trophy { border-radius:10px; padding:.75rem; text-align:center; background:#fff3b0; }
-.trophy.locked { background:#eee; color:var(--muted); }
-.trophy .big { font-size:2rem; display:block; }
-#leaderboard li.me { font-weight:700; background:#fff8d6; }
-#leaderboard li { padding:.35rem .5rem; border-radius:6px; }
-#leaderboard .meta { color:var(--muted); font-weight:400; }
-#feed { margin:0; padding-left:1.1rem; color:var(--muted); }
+#explorer {
+  position: absolute;
+  top: 34px;
+  width: 64px;
+  text-align: center;
+  font-size: 2rem;
+  z-index: 3;
+  pointer-events: none;
+  transition: left .9s ease-in-out;  /* this makes the explorer slide to the next level */
+}
 
-#message { min-height:1.5em; font-weight:600; }
-#message.good { color:var(--good); } #message.bad { color:var(--bad); }
+#level-card { border-top: 1px solid var(--line); padding-top: 16px; }
+#level-card ul { margin: 8px 0 16px; padding-left: 18px; color: var(--muted); line-height: 1.6; }
 
-dialog { border:0; border-radius:14px; padding:1.5rem; max-width:420px; text-align:center; box-shadow:0 8px 30px rgba(0,0,0,.35); }
-dialog::backdrop { background:rgba(0,0,0,.5); }
-.big-stars { font-size:2.2rem; color:#e0a800; letter-spacing:.2rem; }
-.treasure-big { font-size:3.5rem; }
-[hidden] { display:none !important; }
+/* playing a level */
+.hud { display: flex; justify-content: space-between; align-items: center; margin: 14px 0 8px; font-size: 1.1rem; }
+#timer-text { color: var(--muted); font-variant-numeric: tabular-nums; }
+#timer-bar { height: 8px; margin-bottom: 16px; background: #3a3427; border-radius: 4px; overflow: hidden; }
+#timer-fill { height: 100%; width: 100%; background: var(--accent); border-radius: 4px; }
+#timer-fill.low { background: var(--bad); }
+
+/* the puzzle picture has a white background, so it sits in a white rounded box */
+#puzzle { display: block; max-width: 100%; margin: 0 auto 16px; padding: 6px; background: #fff; border-radius: 10px; }
+
+/* number pad: keys that look pressed in when clicked */
+#keypad { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+#keypad button {
+  padding: 16px 0;
+  font-size: 1.3rem;
+  background: var(--tile);
+  color: var(--text);
+  box-shadow: 0 3px 0 #0d0b08;
+}
+#keypad button:active:not(:disabled) { background: var(--accent); color: var(--on-accent); box-shadow: 0 0 0 #0d0b08; }
+
+/* trophy room */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+.stat { padding: 14px 10px; background: var(--tile); border-radius: 10px; text-align: center; font-size: .85rem; color: var(--muted); }
+.stat b { display: block; margin-bottom: 2px; font-size: 1.5rem; color: var(--accent); }
+
+#trophy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.trophy { padding: 16px 10px; background: var(--tile); border-radius: 10px; text-align: center; font-size: .85rem; color: var(--muted); }
+.trophy strong { display: block; margin: 6px 0 4px; font-size: .95rem; color: var(--text); }
+.trophy .big { display: block; font-size: 2.2rem; }
+.trophy.locked { background: #1f1c16; color: #6d6452; }
+.trophy.locked strong { color: #8a806c; }
+
+#history, #leaderboard, #feed { margin: 0; padding-left: 22px; }
+#history li { padding: 4px 0; color: var(--muted); }
+
+/* leaderboard */
+#leaderboard li { padding: 10px 12px; border-radius: 8px; }
+#leaderboard li:hover { background: var(--tile); }
+#leaderboard li.me { color: var(--accent); font-weight: 700; }
+#leaderboard .meta { margin-left: 6px; font-weight: 400; color: var(--muted); }
+
+/* news and messages */
+#feed { color: var(--muted); font-size: .9rem; line-height: 1.7; }
+#message { min-height: 1.5em; margin: 4px 2px 16px; font-weight: 600; color: var(--muted); }
+#message.good { color: var(--good); }
+#message.bad { color: var(--bad); }
+
+/* result pop-up */
+dialog { max-width: 420px; padding: 28px; border: 1px solid var(--line-strong); border-radius: 16px; background: #262018; color: var(--text); text-align: center; box-shadow: 0 12px 40px rgba(0, 0, 0, .6); }
+dialog::backdrop { background: rgba(0, 0, 0, .7); }
+dialog p { color: var(--muted); }
+.big-stars { margin: 8px 0; font-size: 2.2rem; letter-spacing: .2rem; color: var(--accent); }
+.treasure-big { font-size: 3.5rem; }
+
+/* login screen: title and login card sit in the middle of the page */
+body.logged-out main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+body.logged-out header { text-align: center; }
+body.logged-out #auth-panel { width: 100%; max-width: 420px; margin: 0 auto 16px; }
+body.logged-out #message { text-align: center; }
+
+/* the hidden attribute must always win over display rules above */
+[hidden] { display: none !important; }
+
+@media (max-width: 480px) {
+  header h1 { font-size: 1.8rem; }
+  .stats { grid-template-columns: 1fr; }
+}

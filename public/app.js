@@ -38,6 +38,7 @@
     news: $('feed'),
     dialog: $('result-dialog'),
     resultBody: $('result-body'),
+    newsCard: $('news-card'),
   };
 
   // current state of the page
@@ -550,6 +551,8 @@
     el.authPanel.hidden = true;
     el.root.hidden = false;
     el.tabs.hidden = false;
+    el.newsCard.hidden = false;                       // news only shows once logged in
+    document.body.classList.remove('logged-out');     // stops centering the login card
     explorerIdx = 0;
   }
 
@@ -587,8 +590,9 @@
     meta = null;
     el.root.hidden = true;
     el.authPanel.hidden = false;
+    el.newsCard.hidden = true;
+    document.body.classList.add('logged-out');
     say('Logged out.');
-    loadNews();
   });
 
   el.tabs.addEventListener('click', (e) => {
