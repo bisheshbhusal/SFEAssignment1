@@ -61,11 +61,11 @@ Then open http://localhost:3000, register an account and play.
 
 - Banana API: Marc Conrad, University of Bedfordshire, https://marcconrad.com/uob/banana/doc.php
 - npm packages: express, express-session, bcryptjs.
-- **Generative AI:** the first version of the code in this project was written using AI (Anthropic)
-  in October 2026. I then ran it, tested it against the real Banana API, reviewed it and changed it.
+- The first version of the code in this project was written using AI (Anthropic). I then ran it, tested it against the real Banana API, reviewed it and changed it.
 
 Later changes(self):
 
 - Added a new star rule that also rewards speed
 - A news message when a level is failed
 - Two extra unit tests.
+- Redesigned the ui in dark (yellow) theme.
