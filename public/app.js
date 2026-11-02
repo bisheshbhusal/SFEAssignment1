@@ -14,6 +14,7 @@
     authForm: $('auth-form'),
     username: $('username'),
     password: $('password'),
+    togglePassword: $('toggle-password'),
     registerBtn: $('register-btn'),
     root: $('game-root'),
     playerName: $('player-name'),
@@ -556,6 +557,31 @@
     explorerIdx = 0;
   }
 
+  // eye button next to the password: switches between dots and plain text
+  function setPasswordVisible(show) {
+    el.password.type = show ? 'text' : 'password';
+    el.togglePassword.classList.toggle('is-visible', show);
+    el.togglePassword.setAttribute('aria-pressed', String(show));
+    el.togglePassword.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+  }
+
+  // the eye only appears once something has been typed in the password box
+  function updateEyeButton() {
+    const hasText = el.password.value.length > 0;
+    el.togglePassword.hidden = !hasText;
+    if (!hasText) {
+      setPasswordVisible(false);   // an empty box always goes back to hidden mode
+    }
+  }
+
+  el.password.addEventListener('input', updateEyeButton);
+  el.password.addEventListener('change', updateEyeButton);   // also catches browser autofill
+
+  el.togglePassword.addEventListener('click', () => {
+    setPasswordVisible(el.password.type === 'password');
+    el.password.focus();
+  });
+
   async function authenticate(path) {
     try {
       const result = await api(path, {
@@ -563,6 +589,7 @@
         password: el.password.value,
       });
       el.password.value = '';
+      updateEyeButton();   // empty box, so the eye hides again
       say('');
       enterGame(result.username);
       showView('map');
@@ -590,6 +617,7 @@
     meta = null;
     el.root.hidden = true;
     el.authPanel.hidden = false;
+    updateEyeButton();
     el.newsCard.hidden = true;
     document.body.classList.add('logged-out');
     say('Logged out.');

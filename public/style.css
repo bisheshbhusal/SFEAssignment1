@@ -39,29 +39,53 @@ header h1 { margin: 0 0 4px; font-size: 2.2rem; letter-spacing: -0.02em; }
 h2 { margin: 6px 0 12px; font-size: 1.15rem; }
 
 /* cards */
-.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 30px; margin-bottom: 20px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; margin-bottom: 16px; }
 
 /* layout helpers */
-.row { display: flex; gap: 20px; align-items: center; }
+.row { display: flex; gap: 10px; align-items: center; }
 .between { justify-content: space-between; }
-.topbar { margin-bottom: 30px; color: var(--muted); }
+.topbar { margin-bottom: 14px; color: var(--muted); }
 .topbar strong { color: var(--text); }
 
 /* form */
 label { display: block; margin-bottom: 14px; font-size: .85rem; font-weight: 700; }
 input {
   width: 100%;
-  margin-top: 10px;
-  padding: 12px 8px;
+  margin-top: 6px;
+  padding: 12px 14px;
   font: inherit;
   font-weight: 400;
   color: var(--text);
   background: var(--tile);
   border: 2px solid var(--line);
-  border-radius: 19px;
+  border-radius: 10px;
 }
 input:focus { outline: none; border-color: var(--accent); }
 input::placeholder { color: #7d7360; }
+
+/* password field with a small Show / Hide button inside it on the right */
+.password-field { position: relative; display: block; margin-top: 6px; }
+.password-field input { margin-top: 0; padding-right: 52px; }
+.show-btn {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: transparent;
+  color: var(--muted);
+  box-shadow: none;
+}
+.show-btn:hover:not(:disabled) { color: var(--text); filter: none; }
+.show-btn:active:not(:disabled) { transform: translateY(-50%); box-shadow: none; }
+.show-btn .eye-off { display: none; }
+.show-btn.is-visible .eye-open { display: none; }
+.show-btn.is-visible .eye-off { display: block; }
 
 /* buttons: chunky yellow keys that press down when clicked */
 button {
